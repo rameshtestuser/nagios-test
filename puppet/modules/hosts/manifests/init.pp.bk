@@ -1,0 +1,35 @@
+node "puppet-client.localdomain" {
+class httpd {
+    package {'httpd':
+      ensure => installed,
+      }
+    service {'httpd':
+      ensure => running,
+      subscribe => Package['httpd'],
+      }
+}
+}
+
+node "puppet-client2.localdomain" {
+class httpd {
+    package {'mysql':
+      ensure => installed,
+      }
+    service {'mysql':
+      ensure => running,
+      subscribe => Package['mysql'],
+      }
+}  
+}  
+
+node "puppet-client3.localdomain" {
+class httpd {
+    package {'libapache2-mod-php5':
+      ensure => installed,
+      }
+    service {'php':
+      ensure => running,
+      subscribe => Package['libapache2-mod-php5'],
+      }
+}
+}
